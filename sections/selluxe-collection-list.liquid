@@ -1,0 +1,112 @@
+{% style %}
+   .selluxe-collection-list__container {
+    background-color: {{ section.settings.container_bg }};
+    padding: 0 40px;
+   }
+
+  .selluxe-collection-list__wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    align-items: start;
+    gap: 8px;
+    flex-wrap: nowrap;
+    padding: 18px 0;
+    overflow-x: auto; 
+    white-space: nowrap; 
+    scrollbar-width: none; 
+    -ms-overflow-style: none; 
+  }
+
+  .selluxe-collection-list__wrapper::-webkit-scrollbar {
+    display: none; 
+  }
+
+  .collection-list__wrapper {
+    display: flex;
+    flex-wrap: nowrap;
+    margin-right: 20px;
+  }
+
+  .collection-list__wrapper a {
+    white-space: nowrap; 
+    color: {{ section.settings.text_color }};
+    font-size: {{ section.settings.font_size }}px;
+    text-decoration: none;
+    {% if section.settings.uppercase == true %}
+        text-transform: uppercase;
+    {% endif %}
+    font-weight: 700;
+  }
+  
+
+  @media screen and (max-width: 1200px) {
+    .collection-list__wrapper {
+      margin-right: 20px;
+    }
+  }
+
+  @media screen and (max-width: 768px) {
+    .selluxe-collection-list__container {
+        padding: 0 5%;
+    }
+  }
+{% endstyle %}
+
+<div class="selluxe-collection-list__container">
+  <div class="selluxe-collection-list__wrapper">
+    {% for selluxe_collection in section.settings.collection_list %}
+      <div class="collection-list__wrapper">
+        <a href="{{ selluxe_collection.url }}">{{ selluxe_collection.title }}</a>
+      </div>
+    {% endfor %}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Selluxe Collection List",
+  "settings": [
+    {
+      "type": "collection_list",
+      "id": "collection_list",
+      "label": "Collections",
+      "limit": 10
+    },
+    {
+      "type": "color",
+      "id": "container_bg",
+      "label": "Section background color",
+      "default": "#f2f2f2"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Section text color",
+      "default": "#1c1d1d"
+    },
+    {
+      "type": "range",
+      "id": "font_size",
+      "min": 8,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "label": "Text font size",
+      "default": 12
+    },
+    {
+      "type": "checkbox",
+      "id": "uppercase",
+      "label": "Text uppercase?",
+      "default": true
+    }
+  ],
+  "presets": [
+    {
+      "name": "Selluxe Collection List"
+    }
+  ]
+}
+{% endschema %}
+
