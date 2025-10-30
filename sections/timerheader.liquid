@@ -1,0 +1,87 @@
+{% schema %}
+  {
+    "name": "Timer Header",
+    "settings": []
+  }
+{% endschema %}
+
+<section id="shopify-section-sections--23559009763656__timer_bar_XKHxad" class="shopify-section shopify-section-group-header-group timer">
+  <style>
+    .timer-bar {
+      background-color: black;
+      color: white;
+      font-size: 13px;
+      font-weight: bold;
+      text-align: center;
+      padding: 10px 0;
+    }
+
+    #timer {
+      color: white;
+      margin-right: 10px;
+    }
+
+    /* Additional styling for responsive design */
+    @media screen and (max-width: 768px) {
+      .timer-bar {
+        font-size: 12px;
+      }
+
+      #timer {
+        font-size: 12px;
+      }
+    }
+  </style>
+
+  <div class="timer-bar timer-bar-sections--23559009763656__timer_bar_XKHxad">
+    NOUS FERMONS - JUSQU'À 80% DE RÉDUCTION <span id="timer">00:05:32:54</span>
+  </div>
+
+  <script>
+    function startCountdown(endTime) {
+      function updateTimer() {
+        const now = new Date().getTime();
+        const timeLeft = endTime - now;
+
+        if (timeLeft <= 0) {
+          document.getElementById("timer").textContent = "00:00:00:00";
+          clearInterval(interval);
+          return;
+        }
+
+        const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+
+        document.getElementById("timer").textContent =
+          String(days).padStart(2, "0") + ":" +
+          String(hours).padStart(2, "0") + ":" +
+          String(minutes).padStart(2, "0") + ":" +
+          String(seconds).padStart(2, "0");
+      }
+
+      const interval = setInterval(updateTimer, 1000);
+      updateTimer();
+    }
+
+    // Set a new end time of 16 hours if no valid timer exists in localStorage
+    let endTime = localStorage.getItem("countdownEndTime");
+    const now = new Date().getTime();
+
+    if (!endTime || now > parseInt(endTime, 10)) {
+      endTime = now + 16 * 60 * 60 * 1000; // 16 hours from now
+      localStorage.setItem("countdownEndTime", endTime);
+    } else {
+      endTime = parseInt(endTime, 10);
+    }
+
+    startCountdown(endTime);
+  </script>
+
+  <style>
+    #shopify-section-sections--23559009763656__timer_bar_XKHxad #timer {
+      font-size: 13px;
+    }
+  </style>
+</section>
