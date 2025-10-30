@@ -1,0 +1,55 @@
+   <style>
+    .sales-points {
+        display: flex;
+        flex-direction: column;
+        margin-top: {{ block.settings.margin_top }}px;
+        margin-bottom: {{ block.settings.margin_bottom }}px;
+    }
+
+    .selluxe-points {
+        display:flex;
+        align-items:center;
+        margin-bottom:{{ block.settings.bullet_spacing }}px;
+    }
+
+    .selluxe-points .selluxe-text-container {
+      display:flex;
+      width:100%;
+      align-items:center;
+      font-size: {{ block.settings.bullet_font_size }}px;
+    }
+
+    .selluxe-points .selluxe-icon-image {
+        width: {{ block.settings.icon_size }}px !important;
+        margin-right: 10px;
+    }
+
+    </style>
+
+      <div class="sales-points">
+        {% if block.settings.bullet_text_1 != empty %}
+        <div class="selluxe-points">
+          <img class="selluxe-icon-image" src="{% if block.settings.bullet_icon_1.preview_image != null %}{{ block.settings.bullet_icon_1 | image_url }}{% else %} https://cdn-icons-png.flaticon.com/128/2769/2769339.png {% endif %}" height="" width="" alt="icon">
+          <div style="color:{{ block.settings.bullet_text_color_1 }}" class="selluxe-text-container">
+            <span>{{block.settings.bullet_text_1 }}</span>
+          </div>
+        </div>
+        {% endif %}
+        {% if block.settings.bullet_text_2 != empty %}
+        <div class="selluxe-points">
+          <img class="selluxe-icon-image" src="{% if block.settings.bullet_icon_2.preview_image != null %}{{ block.settings.bullet_icon_2 | image_url }}{% else %} https://cdn-icons-png.flaticon.com/128/2279/2279674.png {% endif %}" height="" width="" alt="icon">
+          <div style="color:{{ block.settings.bullet_text_color_2 }}" class="selluxe-text-container">
+            <span>{{block.settings.bullet_text_2 }}</span>
+          </div>
+        </div>
+        {% endif %}
+        {% if block.settings.bullet_text_3 != empty %}
+        <div class="selluxe-points">
+          <img class="selluxe-icon-image" src="{% if block.settings.bullet_icon_3.preview_image != null %}{{ block.settings.bullet_icon_3 | image_url }}{% else %} https://cdn-icons-png.flaticon.com/128/1332/1332646.png {% endif %}" height="" width="" alt="icon">
+          <div style="color:{{ block.settings.bullet_text_color_3 }}" class="selluxe-text-container">
+            <span>{{block.settings.bullet_text_3 }}</span>
+          </div>
+        </div>
+        {% endif %}
+      </div>
+
